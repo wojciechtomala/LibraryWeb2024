@@ -1,7 +1,15 @@
+using LibraryWeb2024.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// CONFIGURE DB CONTEXT AND ENTITY FRAMEWORK CORE:
+builder.Services.AddDbContext<ApplicationDbContext>(
+    // RECEIVE THE CONNECTION STRING FROM APPSETTINGS JSON AND PASS IT INSIDE THE USE SQL SERVER:
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    );
 
 var app = builder.Build();
 
