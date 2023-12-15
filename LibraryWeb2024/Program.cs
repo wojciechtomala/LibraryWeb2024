@@ -1,4 +1,6 @@
-using LibraryWeb2024.Data;
+using LibraryWeb2024.DataAccess.Data;
+using LibraryWeb2024.DataAccess.Repository;
+using LibraryWeb2024.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     // RECEIVE THE CONNECTION STRING FROM APPSETTINGS JSON AND PASS IT INSIDE THE USE SQL SERVER:
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
+// REGISTER NEW SERVICE:
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -30,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

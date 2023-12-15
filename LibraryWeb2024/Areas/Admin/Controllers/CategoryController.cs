@@ -1,35 +1,39 @@
-﻿using LibraryWeb2024.Data;
+﻿using LibraryWeb2024.DataAccess.Data;
+using LibraryWeb2024.DataAccess.Repository.IRepository;
 using LibraryWeb2024.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LibraryWeb2024.Controllers
+namespace LibraryWeb2024.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         // GET APPLICATION IMPLEMENTATION:
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         // CATEGORY CONTROLLER WHICH HANDLE DATABASE OPERATIONS
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
         // CATEGORY VIEW - GET:
-        public IActionResult Create() { 
+        public IActionResult Create()
+        {
             return View();
         }
         // FORM SUBMIT HANDLER:
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 // ADD / SAVE NEW DATA: obj:
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 // REDIRECT - VIEW PAGE / CONTROLLER:
                 TempData["success"] = "New category has been added!";
                 return RedirectToAction("Index", "Category");
@@ -44,7 +48,7 @@ namespace LibraryWeb2024.Controllers
             {
                 return NotFound();
             }
-            Category categoryFromDb = _db.Categories.Find(id);
+            Category categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -58,8 +62,8 @@ namespace LibraryWeb2024.Controllers
             if (ModelState.IsValid)
             {
                 // ADD / SAVE NEW DATA: obj:
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 // REDIRECT - VIEW PAGE / CONTROLLER:
                 TempData["success"] = "Category has been updated!";
                 return RedirectToAction("Index", "Category");
@@ -74,7 +78,7 @@ namespace LibraryWeb2024.Controllers
             {
                 return NotFound();
             }
-            Category categoryFromDb = _db.Categories.Find(id);
+            Category categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -85,13 +89,13 @@ namespace LibraryWeb2024.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult Delete_POST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
-            if (obj == null) 
+            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category has been deleted!";
             return RedirectToAction("Index", "Category");
         }

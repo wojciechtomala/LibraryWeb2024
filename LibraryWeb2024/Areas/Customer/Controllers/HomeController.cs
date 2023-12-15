@@ -2,8 +2,9 @@ using LibraryWeb2024.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace LibraryWeb2024.Controllers
+namespace LibraryWeb2024.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -1,7 +1,7 @@
 ﻿using LibraryWeb2024.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LibraryWeb2024.Data
+namespace LibraryWeb2024.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {
