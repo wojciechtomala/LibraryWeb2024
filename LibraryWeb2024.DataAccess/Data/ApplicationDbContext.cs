@@ -18,6 +18,8 @@ namespace LibraryWeb2024.DataAccess.Data
 
         // SETUP FOR CATEGORY TABLE:
         public DbSet<Category> Categories { get; set; }
+        // SETUP FOR PRODUCT TABLE:
+        public DbSet<Product> Products { get; set; }
 
         // DEFAULT DATA:
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,6 +32,48 @@ namespace LibraryWeb2024.DataAccess.Data
                new Category { Id = 3, Name = "Lectures", DisplayOrder = 3 },
                new Category { Id = 4, Name = "SciFi", DisplayOrder = 4 },
                new Category { Id = 5, Name = "Historical", DisplayOrder = 5 }
+            );
+
+            modelBuilder.Entity<Product>().HasData(
+               new Product { 
+                    Id = 1,
+                    Title = "Wesele",
+                    Description = "Dramat autorstwa Stanisława Wyspiańskiego, wystawiony po raz pierwszy w Teatrze Miejskim w Krakowie 16 marca 1901 roku w reżyserii Adolfa Walewskiego. Dramat ten uważany jest za jedno z najważniejszych dzieł epoki Młodej Polski; przyniósł on autorowi wielką sławę",
+                    Author = "Stanisław Wyspiański",
+                    ISBN = "2847284301",
+                    ListPrice = 30,
+                    Price = 25,
+                    Price50 = 20,
+                    Price100 = 15,
+                    CategoryId = 1,
+                    ImageUrl = ""
+               },
+               new Product { 
+                    Id = 2,
+                    Title = "Pan Tadeusz",
+                    Description = "Dramat autorstwa Stanisława Wyspiańskiego, wystawiony po raz pierwszy w Teatrze Miejskim w Krakowie 16 marca 1901 roku w reżyserii Adolfa Walewskiego. Dramat ten uważany jest za jedno z najważniejszych dzieł epoki Młodej Polski; przyniósł on autorowi wielką sławę",
+                    Author = "Stanisław Wyspiański",
+                    ISBN = "2847284301",
+                    ListPrice = 30,
+                    Price = 25,
+                    Price50 = 20,
+                    Price100 = 15,
+                    CategoryId = 2,
+                    ImageUrl = ""
+               },
+               new Product { 
+                    Id = 3,
+                    Title = "Dziady cz III",
+                    Description = "Dramat autorstwa Stanisława Wyspiańskiego, wystawiony po raz pierwszy w Teatrze Miejskim w Krakowie 16 marca 1901 roku w reżyserii Adolfa Walewskiego. Dramat ten uważany jest za jedno z najważniejszych dzieł epoki Młodej Polski; przyniósł on autorowi wielką sławę",
+                    Author = "Stanisław Wyspiański",
+                    ISBN = "2847284301",
+                    ListPrice = 30,
+                    Price = 25,
+                    Price50 = 20,
+                    Price100 = 15,
+                    CategoryId = 1,
+                    ImageUrl = ""
+               }
             );
         }
     }

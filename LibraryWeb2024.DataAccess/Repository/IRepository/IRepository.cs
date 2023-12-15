@@ -13,10 +13,10 @@ namespace LibraryWeb2024.DataAccess.Repository.IRepository
         // T - Category
 
         // GET ALL CATEGORIES:
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string? includeProperties = null);
 
         // GET SINGLE INDIVIDUAL CATEGORY:
-        T Get(Expression<Func<T, bool>> filter);
+        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
 
         // ADD CATEGORY:
         void Add(T entity);
