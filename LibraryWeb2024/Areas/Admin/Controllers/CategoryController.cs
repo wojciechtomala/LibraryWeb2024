@@ -1,11 +1,14 @@
 ﻿using LibraryWeb2024.DataAccess.Data;
 using LibraryWeb2024.DataAccess.Repository.IRepository;
 using LibraryWeb2024.Models;
+using LibraryWeb2024.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryWeb2024.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         // GET APPLICATION IMPLEMENTATION:

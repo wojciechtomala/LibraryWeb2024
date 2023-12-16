@@ -2,6 +2,9 @@ using LibraryWeb2024.DataAccess.Data;
 using LibraryWeb2024.DataAccess.Repository;
 using LibraryWeb2024.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using LibraryWeb2024.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +15,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     // RECEIVE THE CONNECTION STRING FROM APPSETTINGS JSON AND PASS IT INSIDE THE USE SQL SERVER:
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
+
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+// REDIRECT:
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+
+// RAZOR PAGE NAV:
+builder.Services.AddRazorPages();
+
 // REGISTER NEW SERVICE:
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,8 +45,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
+// ADD ROUTING FOR RAZOR PAGES:
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",

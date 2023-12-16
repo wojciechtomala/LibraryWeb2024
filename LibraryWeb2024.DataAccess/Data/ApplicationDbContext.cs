@@ -1,9 +1,11 @@
 ﻿using LibraryWeb2024.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryWeb2024.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         // BASIC CONFIGURATION THAT IS NEEDED FOR ENTITY FRAMEWORK:
         /*
@@ -20,10 +22,15 @@ namespace LibraryWeb2024.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         // SETUP FOR PRODUCT TABLE:
         public DbSet<Product> Products { get; set; }
+        // SETUP FOR APPLICATION USER TABLE:
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         // DEFAULT DATA:
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // IDENTITY DB CONTEXT CONFIGURATION:
+            base.OnModelCreating(modelBuilder);
+
             // add-migration SeedCategoryTable
             // update-database
             modelBuilder.Entity<Category>().HasData(

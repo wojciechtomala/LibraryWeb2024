@@ -2,12 +2,15 @@
 using LibraryWeb2024.DataAccess.Repository.IRepository;
 using LibraryWeb2024.Models;
 using LibraryWeb2024.Models.ViewModels;
+using LibraryWeb2024.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LibraryWeb2024.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         // GET APPLICATION IMPLEMENTATION:
