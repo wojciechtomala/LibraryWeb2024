@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background: #efefef;
 }
 .book-link {
     text-decoration:none;
@@ -27,4 +27,233 @@ body {
 .book-link:hover {
     transform:scale(1.1);
 
+}
+
+.main-page-footer {
+    background-color: #2c5496;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 40px;
+    margin-top: 150px;
+}
+
+.main-footer-inner {
+    width: 80%;
+    max-width: 1300px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 50px;
+    box-sizing: border-box;
+}
+
+.main-main-footer-container {
+    box-sizing: border-box;
+}
+
+    .main-main-footer-container ul {
+        list-style: none;
+        padding: 0;
+        padding-top: 10px;
+    }
+
+    .main-main-footer-container h4 {
+        color: #FFF;
+    }
+
+    .main-main-footer-container ul li {
+        color: #EEE;
+    }
+
+        .main-main-footer-container ul li a {
+            text-decoration: none;
+            color: #DDD;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+            .main-main-footer-container ul li a:hover {
+                padding: 0 5px;
+                color: #FFF;
+            }
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+    .navbar-brand h1 {
+        font-size: 24px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar-brand img {
+        width: 35px;
+        object-fit: cover;
+    }
+
+.main-page-container {
+    width: 100%;
+}
+/* HOME */
+.hero-section {
+    width: 100%;
+    box-sizing: border-box;
+    height: 1000px;
+    position: relative;
+    background-image: url("../sources/images/hero.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-section-content {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 400px;
+    transform: translateY(-50%);
+}
+
+    .hero-section-content h1 {
+        font-size: 52px;
+        color: #FFF;
+    }
+
+    .hero-section-content p {
+        font-size: 22px;
+        color: #eee;
+    }
+
+.see-more-btn, .sign-up-btn {
+    padding: 15px 30px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.see-more-btn {
+    background-color: #3567b8;
+    color: #FFF;
+}
+
+    .see-more-btn:hover {
+        color: #FFF;
+    }
+
+.sign-up-btn {
+    background-color: #FFF;
+}
+
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+/* FEATURED*/
+.featured-section {
+    width: 100%;
+    max-width: 1300px;
+    margin: 50px auto;
+}
+
+    .featured-section h1 {
+        padding: 40px 0;
+    }
+
+.featured-section-inner {
+    display: flex;
+    justify-content: space-around;
+    gap: 70px;
+}
+
+.featured-section-item {
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: 0.3s;
+    cursor: default;
+    background: #FFF;
+}
+
+    .featured-section-item:hover {
+        transform: scale(1.1);
+    }
+
+    .featured-section-item img {
+        height: 80px;
+        margin-bottom: 20px;
+    }
+/* info */
+.about-section {
+    width: 100%;
+    max-width: 1300px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.about-section-inner:first-child {
+    background-color: #FFF;
+    color: #3567b8;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.about-section-inner {
+    width: 100%;
+    background-color: #3567b8;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    border-radius: 10px;
+    overflow: hidden;
+    color: #FFF;
+}
+
+    .about-section-inner h1 {
+        padding: 30px;
+    }
+
+    .about-section-inner p {
+        padding: 5px 30px;
+    }
+
+.box-content {
+    overflow: hidden;
+    width: 100%;
+    height: min-content;
+}
+
+    .box-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        height: 450px;
+    }
+
+.products-container {
+    width:90%;
+    max-width:1200px;
+    margin: 0 auto;
+    display:grid;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    grid-template-columns:repeat(3,1fr);
 }

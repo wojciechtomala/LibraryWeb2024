@@ -1,15 +1,46 @@
 ﻿@model IEnumerable<Product>
+<div class="hero-section">
+    <div class="hero-section-content">
+        <h1>Welcome to our Library</h1>
+        <p>Here you can add, update, and learn something new about interesting books!</p>
+        <div class="buttons-container">
+            <a class="see-more-btn" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
+            <a class="sign-up-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </div>
+    </div>
+</div>
 
-<div class="row pb-3">
-    @foreach(var product in Model)
+<div class="featured-section">
+    <h1>Learn more:</h1>
+    <div class="featured-section-inner">
+        <div class="featured-section-item">
+            <img src="~/sources/icons/featured/books.png" alt="" />
+            <h2>New books</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+        </div>
+        <div class="featured-section-item">
+            <img src="~/sources/icons/featured/trending.png" alt="" />
+            <h2>Trending positions</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+        </div>
+        <div class="featured-section-item">
+            <img src="~/sources/icons/featured/author.png" alt="" />
+            <h2>New Authors</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+        </div>
+    </div>
+</div>
+
+<div class="products-container">
+    @foreach (var product in Model)
     {
-        <div class="col-lg-3 col-sm-6">
+        <div>
             <div class="row p-2">
                 <div class="col-12 p-1">
                     <a asp-action="Details" asp-route-id="@product.Id" class="book-link">
                         <div class="card border-0 p-3 shadow border-top border-5 rounded">
                             <img src="@product.ImageUrl" class="card-img-top rounded" />
-                            <div class="card-body pb-0"> 
+                            <div class="card-body pb-0">
                                 <div class="pl-1">
                                     <p class="card-title h5 text-dark opacity-75 text-uppercase">@product.Title</p>
                                     <p class="card-title text-warning">@product.Author</p>
@@ -22,4 +53,29 @@
             </div>
         </div>
     }
+</div>
+
+<div class="about-section">
+    <div class="about-section-inner">
+        <div class="box-content">
+            <img src="~/sources/images/about/about1.jpg" />
+        </div>
+        <div class="box-content">
+            <h1>Hello new user!</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
+            <p>it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of</p>
+            <p>Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+    </div>
+    <div class="about-section-inner">
+        <div class="box-content">
+            <h1>Hello new creator!</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
+            <p>it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of</p>
+            <p>Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="box-content">
+            <img src="~/sources/images/about/about2.jpg" />
+        </div>
+    </div>
 </div>

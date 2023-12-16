@@ -55,6 +55,10 @@
                                 <div>@Model.Price100.ToString("c")</div>
                             </div>
                         </div>
+                        @if (User.IsInRole(SD.Role_Customer))
+                        {
+                            <a class="btn btn-primary mt-3" href="tel:111111111">Ask for availability</a>
+                        }
                     </div>
                 </div>
             </div>
